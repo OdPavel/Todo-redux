@@ -10,12 +10,15 @@ export function TodoForm() {
   const [todos, setTodos] = React.useState('');
 
   const addTodoHandler = () => {
-    const todo = {
-      id: v4(),
-      text: todos,
-      isComplited: false,
-    };
-    dispatch(addTodo(todo));
+    if (todos.trim().length) {
+      const todo = {
+        id: v4(),
+        text: todos,
+        isComplited: false,
+      };
+      dispatch(addTodo(todo));
+    }
+
     setTodos('');
   };
 
@@ -27,7 +30,7 @@ export function TodoForm() {
           placeholder="Enter new todo"
           onChange={(e) => setTodos(e.target.value)}
         />
-        <Button type="submite" title="Submite" onClick={() => addTodoHandler()}>
+        <Button type="submite" title="Submite" onClick={addTodoHandler}>
           Submite
         </Button>
       </form>
